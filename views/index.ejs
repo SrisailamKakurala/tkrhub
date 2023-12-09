@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tkrhub</title>
+    <!-- <script src="https://kit.fontawesome.com/5738f81d64.js" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-mono text-slate-700">
+
+    <nav class="md:h-[150px] h-[60px] bg-green-100 flex justify-center items-center">
+        <h1 class="md:text-[80px] text-[30px] font-bold "> <span class="text-green-800 ">TKR</span> INTERVIEW BITS</h1>
+    </nav>
+
+
+    <div class="bg-green-100 min-h-[100vh] w-[100%] p-4 ">
+
+        <main class="bg-slate-700 h-[500px] md:w-[80%] w-[95%] mx-auto rounded p-2 shadow-xl flex flex-col gap-3 mb-[50px]">
+
+            <!-- message -->
+            <div class="flex justify-center items-center h-[20%] ">
+                <h1 class="font-bold lg:text-3xl text-xl text-center text-white">👋 share your interview experience with your mates and
+                    juniors</h1>
+            </div>
+
+            <form action="/post" method="post" class="h-[80%] flex flex-col gap-3">
+
+                <!-- title -->
+                <input type="text" name="title" id="title" class="h-[15%] mx-auto shadow-xl  w-[96.5%] rounded px-4"
+                    placeholder="title">
+
+                <!-- textarea -->
+                <textarea name="content" id="textarea" cols="" rows="150"
+                    class="h-[60%] shadow-xl overflow-y-scroll resize-none mx-auto w-[96.5%] rounded p-4 overflow-hidden"
+                    placeholder="how was your interview?"></textarea>
+
+                <!-- post button -->
+                <button type="submit"
+                    class="h-[15%] w-[96.5%] mx-auto shadow-xl rounded  hover:bg-green-800 bg-green-700 text-white font-bold text-2xl"
+                    id="post">post</button>
+
+            </form>
+
+
+        </main>
+
+
+        <!-- posts -->
+        <div class="bg-green-100 h-[100%] w-[100%] p-4 " id="page">
+           <!-- post -->
+        </div>
+
+
+    </div>
+
+
+    <!-- Add this in your HTML file, for example, in the head section -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Add this script to handle the form submission -->
+    <script >
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Get form data
+                var formData = $(this).serialize();
+
+                // Send a POST request asynchronously
+                $.ajax({
+                    type: 'POST',
+                    url: '/post',
+                    data: formData,
+                    success: function (response) {
+                        // Handle the success if needed
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        // Handle the error if needed
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+<script src="/javascripts/client.mjs"></script>
+
+</html>
